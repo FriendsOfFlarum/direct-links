@@ -51,6 +51,9 @@
             }
         }
     },
+    "conflict": {
+        "sycho/flarum-private-facade": "*"
+    },
     "replace": {
         "zerosonesfun/direct-links": "*",
         "flagrow/direct-links": "*"
