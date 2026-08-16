@@ -1,14 +1,12 @@
 import app from 'flarum/forum/app';
 import Page from 'flarum/forum/components/Page';
-import DiscussionComposer from 'flarum/forum/components/DiscussionComposer';
-import LogInModal from 'flarum/forum/components/LogInModal';
 
 export default class ComposerPage extends Page {
   oninit(vnode) {
     super.oninit(vnode);
 
     if (!app.session.user) {
-      setTimeout(() => app.modal.show(LogInModal), 500);
+      setTimeout(() => app.modal.show(() => import('flarum/forum/components/LogInModal')), 500);
       return m.route.set('/');
     }
 
@@ -25,9 +23,13 @@ export default class ComposerPage extends Page {
         composerProps.originalContent = params.content;
       }
 
-      app.composer.load(DiscussionComposer, composerProps);
-
-      app.composer.show();
+      // @TODO: Modify this to use lazy loading, checkout https://docs.flarum.org/2.x/extend/code-splitting#async-composers
+      app.composer
+        .load(() => import('flarum/forum/components/DiscussionComposer'), composerProps)
+        .then((DiscussionComposer) => {
+          // @TODO: Move all direct access to the module object here. Including subsequent calls to app.composer.show(), checkout https://docs.flarum.org/2.x/extend/code-splitting#async-composers
+          app.composer.show();
+        });
 
       if (params.title) {
         app.composer.fields.title(params.title);

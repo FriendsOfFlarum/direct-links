@@ -1,6 +1,5 @@
 import app from 'flarum/forum/app';
 import RedirectToHomeAndOpenModalPage from './RedirectToHomeAndOpenModalPage';
-import ForgotPasswordModal from 'flarum/forum/components/ForgotPasswordModal';
 
 export default class ForgotPage extends RedirectToHomeAndOpenModalPage {
   createModal() {
