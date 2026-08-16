@@ -16,6 +16,7 @@ use Flarum\Extend;
 return [
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
+        ->jsDirectory(__DIR__.'/js/dist/forum')
         ->route('/login', 'direct-links-login')
         ->route('/signup', 'direct-links-signup')
         ->route('/forgot', 'direct-links-forgot')
