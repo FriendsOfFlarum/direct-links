@@ -28,7 +28,7 @@
         }
     ],
     "require": {
-        "flarum/core": "^1.8.0"
+        "flarum/core": "^2.0.0"
     },
     "autoload": {
         "psr-4": {
@@ -66,6 +66,8 @@
         "analyse:phpstan": "Run static analysis"
     },
     "require-dev": {
-        "flarum/phpstan": "*"
-    }
+        "flarum/phpstan": "^2.0.0"
+    },
+    "minimum-stability": "beta",
+    "prefer-stable": true
 }
